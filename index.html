@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raharja Multimedia Education · Prodi PTI</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap">
+<style>
+:root{--green:#d9ead3;--ink:#333;--muted:#6b7280;--link:#0645ad;--line:#000;--brand:#1d5fd6;--navy:#123a92;--gold:#ffc829;--gold-ink:#2b2000;--danger:#c62828;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Nunito Sans',Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;font-size:14px}
+a{color:var(--link)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.in{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.topbar{background:#fff;border-bottom:3px solid var(--gold)}
+.topbar .in{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10px}
+.topbar img{width:42px;height:46px}
+.topbar b{font-size:16px;color:var(--navy);display:block}
+.topbar span{font-size:12px;color:var(--muted)}
+.topbar nav{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.topbar nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:13px}
+.hero{position:relative;min-height:240px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(29,95,214,.55) 0%,rgba(29,95,214,.18) 45%,rgba(255,255,255,0) 70%),url(banner_kampus.jpg) center 35%/cover no-repeat,#9fd8f0}
+.hero .in{width:100%;padding-block:34px}
+.hero h1{margin:0;color:#fff;font-size:34px;font-weight:800;letter-spacing:.5px;border-left:5px solid var(--gold);padding-left:18px;text-transform:uppercase;text-shadow:0 2px 10px rgba(0,40,120,.45)}
+.hero .prodi{display:inline-block;margin:12px 0 0 23px;background:var(--gold);color:var(--gold-ink);font-weight:800;font-size:16px;padding:6px 16px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.hero .fk{display:block;margin:8px 0 0 23px;color:#fff;font-weight:700;font-size:14px;text-shadow:0 1px 6px rgba(0,40,120,.5)}
+.crumb{padding-block:18px;border-bottom:1px solid #e5e5e5;color:var(--muted);font-size:13px;margin-bottom:24px}
+.crumb a{color:#555;text-decoration:none}
+.crumb i{font-style:normal;margin:0 10px}
+main{padding-bottom:56px}
+.bar{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.btn{border:1px solid #bbb;background:#fff;padding:7px 14px;border-radius:6px;font-weight:800;cursor:pointer;font-size:13px}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.btn.pri{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.btn.del{color:var(--danger);border-color:#e7b4b4}
+.btn.sm{padding:3px 9px;font-size:12px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px}
+th,td{border:1px solid var(--line);padding:9px 10px;font-size:13px;vertical-align:middle}
+th{background:var(--green);font-weight:700;text-align:center;color:#444}
+td.c{text-align:center}
+td a{font-weight:700}
+.na{color:#999;font-style:italic}
+.new{display:inline-block;margin-left:6px;font-size:10.5px;font-weight:800;background:var(--gold);color:var(--gold-ink);border-radius:4px;padding:1px 6px}
+.acts{display:flex;gap:4px;justify-content:center}
+body:not(.admin) .adm{display:none!important}
+.note{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.5}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:50;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.modal{background:#fff;width:100%;max-width:500px;border-radius:10px;box-shadow:0 20px 50px rgba(0,0,0,.25);max-height:90vh;overflow:auto}
+.modal h3{margin:0;padding:14px 18px;border-bottom:3px solid var(--gold);font-size:16px;color:var(--navy)}
+.modal form{padding:16px 18px;display:grid;gap:12px}
+.modal label{display:grid;gap:4px;font-weight:700;font-size:13px}
+.modal input,.modal select{border:1px solid #bbb;border-radius:6px;padding:8px 10px;width:100%;font-weight:400}
+.modal .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal .foot{display:flex;justify-content:flex-end;gap:8px}
+.hint{font-weight:400;color:var(--muted);font-size:12px}
+.err{color:var(--danger);font-size:12.5px;font-weight:700}
+.toast{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;z-index:60;border-left:4px solid var(--gold)}
+.foot-site{margin-top:20px;padding-block:20px;background:#f5f5f5;color:var(--muted);font-size:12px;text-align:center}
+[hidden]{display:none!important}
+@media (max-width:600px){.hero h1{font-size:22px}.hero .prodi{font-size:13px}.modal .row{grid-template-columns:1fr}}
+</style></head><body>
+<header class="topbar"><div class="in"><img src="logo_raharja.png" alt="Logo Perguruan Tinggi Raharja"><div><b>Universitas Raharja</b><span>Fakultas Keguruan dan Ilmu Pendidikan</span></div>
+<nav><a href="./">Raharja Multimedia Education</a><a href="https://raharja.ac.id" target="_blank" rel="noopener">raharja.ac.id</a><button class="btn pri" id="adminBtn">Tambah / Edit</button></nav></div></header>
+<section class="hero"><div class="in"><h1>Raharja Multimedia Education</h1><span class="prodi">Program Studi Pendidikan Teknologi Informasi</span><span class="fk">Fakultas Keguruan dan Ilmu Pendidikan · Universitas Raharja</span></div></section>
+<main class="in"><div class="crumb"><a href="./">Home</a><i>›</i>Raharja Multimedia Education</div>
+<div class="bar adm"><span class="note" id="modeNote" style="margin:0 auto 0 0;align-self:center"></span><button class="btn gold" data-act="add">+ Tambah mata kuliah / RPS</button><button class="btn" id="doneBtn">Selesai</button></div>
+<div class="tw"><table><thead><tr><th style="width:54px">No.</th><th style="width:170px">KODE MATA KULIAH</th><th>NAMA MATA KULIAH</th><th style="width:60px">SKS</th><th style="width:90px">KET</th><th style="width:90px">RPS</th><th style="width:150px">Link Bahan Ajar</th><th class="adm" style="width:120px">Aksi</th></tr></thead>
+<tbody id="tb"></tbody></table></div></main>
+<footer class="foot-site"><div class="in">Raharja Multimedia Education · Program Studi Pendidikan Teknologi Informasi · Fakultas Keguruan dan Ilmu Pendidikan · Universitas Raharja</div></footer>
+<div class="overlay" id="modal" hidden><div class="modal"><h3 id="mTitle"></h3><form id="mForm" novalidate></form></div></div>
+<div class="toast" id="toast" hidden></div>
+<script>
+(function(){
+var BASE = [{"kode": "FS105", "nama": "Algoritma dan Pemrograman", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS105.pdf", "bahan": "mk-FS105.html", "bahanFiles": []}, {"kode": "UR101", "nama": "Character Building: Agama", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_UR101.pdf", "bahan": "mk-UR101.html", "bahanFiles": []}, {"kode": "UR103", "nama": "Character Building: Pancasila", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_UR103.pdf", "bahan": "mk-UR103.html", "bahanFiles": []}, {"kode": "PT102", "nama": "Manajemen Pendidikan", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT102.pdf", "bahan": "mk-PT102.html", "bahanFiles": []}, {"kode": "FS119", "nama": "Organisasi dan Arsitektur Komputer", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS119.pdf", "bahan": "mk-FS119.html", "bahanFiles": []}, {"kode": "UR105", "nama": "Pengantar Teknologi Informasi", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_UR105.pdf", "bahan": "mk-UR105.html", "bahanFiles": []}, {"kode": "FS111", "nama": "Statistika dan Probabilitas", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS111.pdf", "bahan": "mk-FS111.html", "bahanFiles": []}, {"kode": "UR102", "nama": "Character Building: Bahasa Inggris I", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_UR102.pdf", "bahan": "mk-UR102.html", "bahanFiles": []}, {"kode": "UR104", "nama": "Character Building: Kewarganegaraan", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_UR104.pdf", "bahan": "mk-UR104.html", "bahanFiles": []}, {"kode": "FS108", "nama": "Interaksi Manusia dan Komputer", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_FS108.pdf", "bahan": "mk-FS108.html", "bahanFiles": []}, {"kode": "FS110", "nama": "Kalkulus", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS110.pdf", "bahan": "mk-FS110.html", "bahanFiles": []}, {"kode": "PT104", "nama": "Landasan Kependidikan", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_PT104.pdf", "bahan": "mk-PT104.html", "bahanFiles": []}, {"kode": "FS117", "nama": "Pengantar Data Science", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS117.pdf", "bahan": "mk-FS117.html", "bahanFiles": []}, {"kode": "PT103", "nama": "Perencanaan Pembelajaran", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT103.pdf", "bahan": "mk-PT103.html", "bahanFiles": []}, {"kode": "FS302", "nama": "Pengantar Kecerdasan Buatan", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_FS302.pdf", "bahan": "mk-FS302.html", "bahanFiles": []}, {"kode": "FS218", "nama": "Analisis dan Perancangan Sistem", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS218.pdf", "bahan": "mk-FS218.html", "bahanFiles": []}, {"kode": "UR201", "nama": "Character Building: Bahasa Indonesia", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_UR201.pdf", "bahan": "mk-UR201.html", "bahanFiles": []}, {"kode": "UR203", "nama": "Character Building: Bahasa Inggris II", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_UR203.pdf", "bahan": "mk-UR203.html", "bahanFiles": []}, {"kode": "PT302", "nama": "Perkembangan Peserta Didik", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT302.pdf", "bahan": "mk-PT302.html", "bahanFiles": []}, {"kode": "FS207", "nama": "Sistem Operasi", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS207.pdf", "bahan": "mk-FS207.html", "bahanFiles": []}, {"kode": "PT202", "nama": "Strategi Pembelajaran", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT202.pdf", "bahan": "mk-PT202.html", "bahanFiles": []}, {"kode": "FS209", "nama": "Struktur Data", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS209.pdf", "bahan": "mk-FS209.html", "bahanFiles": []}, {"kode": "FS208", "nama": "Database Management System (DBMS)", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS208.pdf", "bahan": "mk-FS208.html", "bahanFiles": []}, {"kode": "FS210", "nama": "E-Business", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS210.pdf", "bahan": "mk-FS210.html", "bahanFiles": []}, {"kode": "UR202", "nama": "Entrepreneurship", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_UR202.pdf", "bahan": "mk-UR202.html", "bahanFiles": []}, {"kode": "SD205", "nama": "UI / UX Design", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_SD205.pdf", "bahan": "mk-SD205.html", "bahanFiles": []}, {"kode": "FE205", "nama": "Metode Penelitian dan Penulisan Ilmiah", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FE205.pdf", "bahan": "mk-FE205.html", "bahanFiles": []}, {"kode": "PT204", "nama": "Multimedia Pembelajaran Interaktif", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT204.pdf", "bahan": "mk-PT204.html", "bahanFiles": []}, {"kode": "FS112", "nama": "Pemrograman Berorientasi Obyek", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS112.pdf", "bahan": "mk-FS112.html", "bahanFiles": []}, {"kode": "PT201", "nama": "Belajar dan Pembelajaran", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT201.pdf", "bahan": "mk-PT201.html", "bahanFiles": []}, {"kode": "FS331", "nama": "Jaringan Komputer dan Komunikasi Data", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS331.pdf", "bahan": "mk-FS331.html", "bahanFiles": []}, {"kode": "PT502", "nama": "Landasan Bimbingan dan Konseling (BK)", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_PT502.pdf", "bahan": "mk-PT502.html", "bahanFiles": []}, {"kode": "PT203", "nama": "Learning Management System", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT203.pdf", "bahan": "mk-PT203.html", "bahanFiles": []}, {"kode": "FS415", "nama": "Pemrograman Aplikasi Bergerak", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS415.pdf", "bahan": "mk-FS415.html", "bahanFiles": []}, {"kode": "FS327", "nama": "Pemrograman berbasis Web", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS327.pdf", "bahan": "mk-FS327.html", "bahanFiles": []}, {"kode": "PT403", "nama": "Desain Kreatif Aplikasi", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT403.pdf", "bahan": "mk-PT403.html", "bahanFiles": []}, {"kode": "UR304", "nama": "Etika Profesi dan Profesional", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_UR304.pdf", "bahan": "mk-UR304.html", "bahanFiles": []}, {"kode": "PT503", "nama": "Kurikulum TIK (Teknologi Informasi dan Komunikasi)", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT503.pdf", "bahan": "mk-PT503.html", "bahanFiles": []}, {"kode": "PT304", "nama": "Micro Teaching", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT304.pdf", "bahan": "mk-PT304.html", "bahanFiles": []}, {"kode": "PT305", "nama": "Psikologi Pendidikan", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT305.pdf", "bahan": "mk-PT305.html", "bahanFiles": []}, {"kode": "FS306", "nama": "Rekayasa Piranti Lunak", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS306.pdf", "bahan": "mk-FS306.html", "bahanFiles": []}, {"kode": "FS316", "nama": "Sistem Informasi Manajemen", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS316.pdf", "bahan": "mk-FS316.html", "bahanFiles": []}, {"kode": "SI302", "nama": "Dasar Infrastruktur Teknologi Informasi", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_SI302.pdf", "bahan": "mk-SI302.html", "bahanFiles": []}, {"kode": "PT402", "nama": "Evaluasi Pembelajaran", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_PT402.pdf", "bahan": "mk-PT402.html", "bahanFiles": []}, {"kode": "FS411", "nama": "Internet of Things (IoT)", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS411.pdf", "bahan": "mk-FS411.html", "bahanFiles": []}, {"kode": "UR401", "nama": "Kuliah Kerja Praktek (KKP)", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_UR401.pdf", "bahan": "mk-UR401.html", "bahanFiles": []}, {"kode": "SI201", "nama": "Manajemen Proyek Sistem Informasi", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_SI201.pdf", "bahan": "mk-SI201.html", "bahanFiles": []}, {"kode": "FS325", "nama": "Keamanan Teknologi Informasi", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_FS325.pdf", "bahan": "mk-FS325.html", "bahanFiles": []}, {"kode": "FS215", "nama": "Teknologi Platform", "sks": 3, "ket": "Reguler", "rps": "rps/RPS_FS215.pdf", "bahan": "mk-FS215.html", "bahanFiles": []}, {"kode": "KW112", "nama": "Business Creativity", "sks": 2, "ket": "Reguler", "rps": "rps/RPS_KW112.pdf", "bahan": "mk-KW112.html", "bahanFiles": []}, {"kode": "UR402", "nama": "Tugas Akhir", "sks": 6, "ket": "Reguler", "rps": "rps/RPS_UR402.pdf", "bahan": "mk-UR402.html", "bahanFiles": []}, {"kode": "UR403", "nama": "Prototipe", "sks": 6, "ket": "Reguler", "rps": "rps/RPS_UR403.pdf", "bahan": "mk-UR403.html", "bahanFiles": []}, {"kode": "UR404", "nama": "Proyek", "sks": 6, "ket": "Reguler", "rps": "rps/RPS_UR404.pdf", "bahan": "mk-UR404.html", "bahanFiles": []}, {"kode": "UR405", "nama": "Publikasi", "sks": 6, "ket": "Reguler", "rps": "rps/RPS_UR405.pdf", "bahan": "mk-UR405.html", "bahanFiles": []}];
+var LS = "rme-pti-data-v1", DBN = "rme-pti-files";
+var $ = function(s){ return document.querySelector(s); };
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+var data = BASE.slice(), mode = "local", pass = "", tt;
+function toast(m){ var t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(tt); tt = setTimeout(function(){ t.hidden = true; }, 2600); }
+
+/* penyimpanan file PDF di browser (mode lokal) */
+function idb(){ return new Promise(function(res, rej){ try{ var r = indexedDB.open(DBN, 1); r.onupgradeneeded = function(){ r.result.createObjectStore("f"); }; r.onsuccess = function(){ res(r.result); }; r.onerror = function(){ rej(r.error); }; }catch(e){ rej(e); } }); }
+function idbPut(k, blob){ return idb().then(function(d){ return new Promise(function(res, rej){ var tx = d.transaction("f", "readwrite"); tx.objectStore("f").put(blob, k); tx.oncomplete = function(){ res(); }; tx.onerror = function(){ rej(tx.error); }; }); }); }
+function idbGet(k){ return idb().then(function(d){ return new Promise(function(res){ var r = d.transaction("f").objectStore("f").get(k); r.onsuccess = function(){ res(r.result || null); }; r.onerror = function(){ res(null); }; }); }); }
+function saveLocal(){ try{ localStorage.setItem(LS, JSON.stringify(data)); return Promise.resolve(); }catch(e){ return Promise.reject(new Error("Penyimpanan browser tidak tersedia")); } }
+
+function load(){
+  return fetch("api.php?a=data", {cache:"no-store"}).then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){ if(Array.isArray(d)){ data = d; mode = "server"; } else throw 0; })
+    .catch(function(){ mode = "local"; try{ var s = JSON.parse(localStorage.getItem(LS)); if(Array.isArray(s)) data = s; }catch(e){} });
+}
+function persist(){
+  if(mode === "local") return saveLocal();
+  var fd = new FormData(); fd.append("a", "save"); fd.append("pass", pass); fd.append("data", JSON.stringify(data));
+  return fetch("api.php", {method:"POST", body:fd}).then(function(r){ return r.json(); }).then(function(j){ if(!j.ok) throw new Error(j.error || "Gagal menyimpan"); });
+}
+function uploadPdf(file, kode){
+  if(!file) return Promise.resolve(null);
+  if(file.type !== "application/pdf" && !/\.pdf$/i.test(file.name)) return Promise.reject(new Error("File RPS harus PDF"));
+  if(file.size > 20 * 1024 * 1024) return Promise.reject(new Error("Ukuran PDF maksimal 20 MB"));
+  if(mode === "local"){ var key = "rps-" + kode + "-" + Date.now(); return idbPut(key, file).then(function(){ return "idb:" + key; }); }
+  var fd = new FormData(); fd.append("a", "upload"); fd.append("pass", pass); fd.append("kode", kode); fd.append("file", file);
+  return fetch("api.php", {method:"POST", body:fd}).then(function(r){ return r.json(); }).then(function(j){ if(!j.ok) throw new Error(j.error || "Unggah gagal"); return j.url; });
+}
+
+function render(){
+  var rows = data.slice().sort(function(a, b){ return a.nama.toLowerCase().localeCompare(b.nama.toLowerCase()) || a.kode.localeCompare(b.kode); });
+  $("#tb").innerHTML = rows.map(function(m, i){
+    var rps = m.rps ? '<a href="' + esc(m.rps) + '" data-open="' + esc(m.rps) + '" target="_blank" rel="noopener">' + esc(m.kode) + '</a>' : '<span class="na">–</span>';
+    var ba = m.bahan ? '<a href="' + esc(m.bahan) + '">' + esc(m.kode) + '</a>' : '<span class="na">Segera</span>';
+    return '<tr><td class="c">' + (i + 1) + '</td><td class="c">' + esc(m.kode) + (m.baru ? '<span class="new">baru</span>' : '') + '</td><td>' + esc(m.nama) + '</td><td class="c">' + esc(m.sks) + '</td><td class="c">' + esc(m.ket || "Reguler") + '</td><td class="c">' + rps + '</td><td class="c">' + ba + '</td>'
+      + '<td class="c adm"><div class="acts"><button class="btn sm" data-act="edit" data-k="' + esc(m.kode) + '">Edit</button><button class="btn sm del" data-act="del" data-k="' + esc(m.kode) + '">Hapus</button></div></td></tr>';
+  }).join("");
+  $("#modeNote").textContent = mode === "server" ? "Perubahan disimpan di server untuk semua pengunjung." : "Perubahan disimpan di browser ini saja. Untuk berbagi ke semua pengunjung, pasang di server kampus beserta api.php.";
+}
+
+function modal(title, m, onSave){
+  $("#mTitle").textContent = title;
+  var f = $("#mForm");
+  f.innerHTML = '<div class="row"><label for="f_kode">Kode mata kuliah<input id="f_kode" value="' + esc(m ? m.kode : "") + '" ' + (m ? "readonly" : "") + ' placeholder="mis. PT601"></label>'
+    + '<label for="f_sks">SKS<input id="f_sks" type="number" min="1" max="24" value="' + esc(m ? m.sks : 3) + '"></label></div>'
+    + '<label for="f_nama">Nama mata kuliah<input id="f_nama" value="' + esc(m ? m.nama : "") + '"></label>'
+    + '<label for="f_ket">KET<select id="f_ket"><option' + (!m || m.ket === "Reguler" ? " selected" : "") + '>Reguler</option><option' + (m && m.ket === "iLearning" ? " selected" : "") + '>iLearning</option></select></label>'
+    + '<label for="f_rps">File RPS (PDF) <span class="hint">' + (m && m.rps ? "kosongkan bila tidak diganti" : "maksimal 20 MB") + '</span><input id="f_rps" type="file" accept="application/pdf,.pdf"></label>'
+    + '<label for="f_ba">Link bahan ajar <span class="hint">opsional, mis. mk-PT102.html atau alamat https://</span><input id="f_ba" value="' + esc(m ? m.bahan || "" : "") + '"></label>'
+    + '<div class="err" id="mErr" hidden></div><div class="foot"><button type="button" class="btn" id="mCancel">Batal</button><button type="submit" class="btn pri">Simpan</button></div>';
+  $("#modal").hidden = false;
+  setTimeout(function(){ var i = f.querySelector("input:not([readonly])"); if(i) i.focus(); }, 0);
+  $("#mCancel").onclick = function(){ $("#modal").hidden = true; };
+  f.onsubmit = function(e){
+    e.preventDefault();
+    var v = {kode: $("#f_kode").value.trim().toUpperCase(), nama: $("#f_nama").value.trim(), sks: +$("#f_sks").value, ket: $("#f_ket").value, bahan: $("#f_ba").value.trim(), file: $("#f_rps").files[0] || null};
+    var err = function(t){ $("#mErr").textContent = t; $("#mErr").hidden = false; };
+    if(!/^[A-Z]{2,3}\d{3}$/.test(v.kode)) return err("Kode harus huruf diikuti 3 angka, mis. PT601.");
+    if(!m && data.some(function(x){ return x.kode === v.kode; })) return err("Kode " + v.kode + " sudah ada. Pakai tombol Edit untuk mengubahnya.");
+    if(!v.nama) return err("Isi nama mata kuliah.");
+    if(!(v.sks >= 1 && v.sks <= 24)) return err("SKS harus angka 1–24.");
+    if(v.bahan && !/^(https:\/\/|[A-Za-z0-9_\-./]+$)/.test(v.bahan)) return err("Link bahan ajar harus diawali https:// atau berupa nama file.");
+    var btn = f.querySelector("button[type=submit]"); btn.disabled = true; btn.textContent = "Menyimpan…";
+    onSave(v).then(function(){ $("#modal").hidden = true; }).catch(function(x){ err(x.message || "Gagal menyimpan."); btn.disabled = false; btn.textContent = "Simpan"; });
+  };
+}
+/* Kata sandi admin untuk mode tanpa server (hash SHA-256). Di server, kata sandi diperiksa oleh api.php. */
+var ADMIN_HASH = "61941cfad09c37e53a0ae480211f87db9c1a19abc07cd8adb4eee3e0491d0f28";
+function sha256(t){ return crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)).then(function(b){ return Array.from(new Uint8Array(b)).map(function(x){ return x.toString(16).padStart(2, "0"); }).join(""); }); }
+function askPass(next){
+  $("#mTitle").textContent = "Masuk admin";
+  var f = $("#mForm");
+  f.innerHTML = '<label for="f_pass">Kata sandi admin<input id="f_pass" type="password" autocomplete="current-password"></label><div class="err" id="mErr" hidden></div><div class="foot"><button type="button" class="btn" id="mCancel">Batal</button><button type="submit" class="btn pri">Masuk</button></div>';
+  $("#modal").hidden = false; setTimeout(function(){ $("#f_pass").focus(); }, 0);
+  $("#mCancel").onclick = function(){ $("#modal").hidden = true; };
+  f.onsubmit = function(e){ e.preventDefault(); var p = $("#f_pass").value; var fd = new FormData(); fd.append("a", "check"); fd.append("pass", p);
+    (mode === "server" ? fetch("api.php", {method:"POST", body:fd}).then(function(r){ return r.json(); }) : sha256(p).then(function(h){ return {ok: h === ADMIN_HASH}; })).then(function(j){ if(!j.ok) throw 0; pass = p; $("#modal").hidden = true; next(); })
+      .catch(function(){ $("#mErr").textContent = "Kata sandi salah."; $("#mErr").hidden = false; }); };
+}
+function setAdmin(on){ document.body.classList.toggle("admin", on); $("#adminBtn").hidden = on; }
+
+$("#adminBtn").onclick = function(){ if(!pass) askPass(function(){ setAdmin(true); }); else setAdmin(true); };
+$("#doneBtn").onclick = function(){ setAdmin(false); pass = ""; };
+document.addEventListener("keydown", function(e){ if(e.key === "Escape") $("#modal").hidden = true; });
+document.addEventListener("click", function(e){
+  var o = e.target.closest("[data-open^='idb:']");
+  if(o){ e.preventDefault(); idbGet(o.dataset.open.slice(4)).then(function(b){ if(!b) return toast("File tidak ditemukan di browser ini"); var u = URL.createObjectURL(b); var a = document.createElement("a"); a.href = u; a.target = "_blank"; a.rel = "noopener"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){ URL.revokeObjectURL(u); }, 60000); }); return; }
+  var b = e.target.closest("[data-act]"); if(!b || !document.body.classList.contains("admin")) return;
+  var act = b.dataset.act, m = data.find(function(x){ return x.kode === b.dataset.k; });
+  if(act === "add") modal("Tambah mata kuliah / RPS baru", null, function(v){
+    return uploadPdf(v.file, v.kode).then(function(url){ data.push({kode:v.kode, nama:v.nama, sks:v.sks, ket:v.ket, rps:url, bahan:v.bahan || null, baru:true}); return persist(); }).then(function(){ render(); toast(v.kode + " ditambahkan"); });
+  });
+  if(act === "edit") modal("Edit " + m.kode, m, function(v){
+    return uploadPdf(v.file, v.kode).then(function(url){ m.nama = v.nama; m.sks = v.sks; m.ket = v.ket; m.bahan = v.bahan || null; if(url) m.rps = url; return persist(); }).then(function(){ render(); toast(m.kode + " diperbarui"); });
+  });
+  if(act === "del"){
+    $("#mTitle").textContent = "Hapus mata kuliah";
+    $("#mForm").innerHTML = '<p style="margin:0;line-height:1.5">Hapus <b>' + esc(m.kode) + ' ' + esc(m.nama) + '</b> dari daftar?</p><div class="err" id="mErr" hidden></div><div class="foot"><button type="button" class="btn" id="mCancel">Batal</button><button type="submit" class="btn del">Hapus</button></div>';
+    $("#modal").hidden = false; $("#mCancel").onclick = function(){ $("#modal").hidden = true; };
+    $("#mForm").onsubmit = function(e){ e.preventDefault(); var keep = data; data = data.filter(function(x){ return x !== m; });
+      persist().then(function(){ $("#modal").hidden = true; render(); toast(m.kode + " dihapus"); }).catch(function(x){ data = keep; $("#mErr").textContent = x.message; $("#mErr").hidden = false; }); };
+  }
+});
+load().then(render);
+})();
+</script>
+</body></html>
